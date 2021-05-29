@@ -15,5 +15,9 @@ include 'entete.php';
 </form>
 <button  href="inscription.php"> Première connexion</button>
 
+<a href ="inscription.php">inscription </a>
+<a href ="test_base.php">Test </a>
 </body>
-<?php include 'footer.php';?>
+<?php 
+
+
