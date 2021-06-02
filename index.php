@@ -1,7 +1,9 @@
 
 <?php
 $title ="Connexion";
-include 'entete.php';
+include 'header.php';
+include 'navbar.php';
+include 'connect_bdd.php';
 ?>
 <body>
 <!--formulaire de connexion a afficher sur la page d'accueil -->

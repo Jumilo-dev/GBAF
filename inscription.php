@@ -20,19 +20,12 @@ if(!empty($_POST)){
     
 }    	
 	//*Connexion à la base	
-    
-try
-{
-	$bdd = new PDO('mysql:host=localhost;port=3307;dbname=gbaf;charset=utf8', 'root', 'root');
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
+    include 'includes/connect_bdd.php'; 
+
 //*Requete
 $sql= "INSERT INTO users(``,`nom`,`prenom`,`username`,`password`,`question`,`reponse`) VALUES ('',:nom, :prenom, :username, '$password',:question,:reponse)";
 //*Requete preparée
-$query = $bdd->prepare($sql);
+$query = $bd->prepare($sql);
 
 $query->bindValue(":nom", $name, PDO::PARAM_STR);
 $query->bindValue(":prenom", $firstname, PDO::PARAM_STR);
