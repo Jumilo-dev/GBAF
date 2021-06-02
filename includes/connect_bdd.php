@@ -23,6 +23,7 @@ $dsn = "mysql:dbname=".DBNAME.";host=".DBHOST.";port=".DBPORT;
 try
 {
 	$db = new PDO($dsn, DBUSER,DBPASS);
+    //*définir le format d'envoi des données
     $db->exec("SET NAMES utf8");
     
 }
@@ -33,3 +34,4 @@ catch(PDOException $e)
 //* Exemple d'insertion dans base de données
 /*$sql = "INSERT INTO users (`name`,`password`) VALUES ('essai1','bidule')";
 $requete = $db->query($sql);*/
+?>

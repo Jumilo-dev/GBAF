@@ -1,11 +1,13 @@
 
 <?php
+include 'includes/connect_bdd.php'; 
+
 //*Vérifier que le formulaire est envoyé, et que les champs sont completés
 if(!empty($_POST)){
 
 	if(isset($_POST["name"],$_POST["firstname"],$_POST["username"],$_POST["password"],$_POST["question"],$_POST["reponse"])
 		&& !empty($_POST["name"]) && !empty ($_POST["firstname"])&& !empty ($_POST["username"])&& !empty ($_POST["password"])&& !empty ($_POST["question"])&& !empty ($_POST["reponse"])
-	){ //*Recupérer et protéger les données, faire les contrôles
+	){ //*Le formulaire est complet. Recupérer et protéger les données, faire les contrôles
         
         $name= strip_tags($_POST["name"]);
         $firstname= strip_tags($_POST["firstname"]);
@@ -16,16 +18,15 @@ if(!empty($_POST)){
         $question= strip_tags($_POST["question"]);
         $reponse= strip_tags($_POST["reponse"]);
     
-    }
     
-}    	
-	//*Connexion à la base	
-    include 'includes/connect_bdd.php'; 
+    
 
+   	
+    
 //*Requete
-$sql= "INSERT INTO users(``,`nom`,`prenom`,`username`,`password`,`question`,`reponse`) VALUES ('',:nom, :prenom, :username, '$password',:question,:reponse)";
+$sql= "INSERT INTO users(`nom`,`prenom`,`username`,`password`,`question`,`reponse`) VALUES (:nom, :prenom, :username, '$password',:question, :reponse)";
 //*Requete preparée
-$query = $bd->prepare($sql);
+$query = $db->prepare($sql);
 
 $query->bindValue(":nom", $name, PDO::PARAM_STR);
 $query->bindValue(":prenom", $firstname, PDO::PARAM_STR);
@@ -34,16 +35,16 @@ $query->bindValue(":question", $question, PDO::PARAM_STR);
 $query->bindValue(":reponse", $reponse, PDO::PARAM_STR);
 
 $query->execute();
+
 //*message d'erreur si le formulaire est incomplet (à compléter plus tard pour indiquer quel champ est incomplet)
-/*}else{
-    die("Le formulaire est incomplet")
-*/
+}else
+{
+    die("Le formulaire est incomplet");}
+}
 
 $title ="Inscription";
-include 'entete.php';
-
+include "includes/header.php";
 ?>
-
 
 
 
@@ -51,7 +52,7 @@ include 'entete.php';
 <h1>Inscription</h1>
 
 <!--formulaire de création de compte -->
-<form  method="post">
+<form  method="POST">
 <div>
 <label for="name">Nom </label>
 <input type="text" name="name" required>
@@ -72,10 +73,10 @@ include 'entete.php';
 <label for="question">Question secrète utilisée pour réinitialiser votre mot de passe</label>
 <select name="question">
 <?php
-$choice_question=$bdd->query('SELECT question FROM questions');
+$requête=$db->query('SELECT question FROM questions');
 
 
-while ($choice = $choice_question->fetch())
+while ($choice = $requête->fetch())
 {
     ?>
     <option value="<?php echo $choice ['question'];?>"><?php echo $choice ['question'];?></option>
