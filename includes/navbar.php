@@ -13,9 +13,10 @@
     
     <?php else: ?>
         <li><a href ="index.php">Accueil</a></li>
+        <li><a href ="inscription.php">Inscription</a></li>
     <?php endif;?>
-    <li><a href ="inscription.php">Inscription</a></li>
-    <li><a ref="Déconnexion.php">Déconnexion</a></li>
+    
+    
     </ul>
 </body>
 </html>
