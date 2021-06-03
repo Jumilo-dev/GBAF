@@ -1,6 +1,8 @@
 
 <?php
-include 'includes/connect_bdd.php'; 
+include 'includes/connect_bdd.php';
+include "includes/header.php"; 
+$title ="Inscription";
 
 //*Vérifier que le formulaire est envoyé, et que les champs sont completés
 if(!empty($_POST)){
@@ -24,7 +26,7 @@ if(!empty($_POST)){
    	
     
 //*Requete
-$sql= "INSERT INTO users(`nom`,`prenom`,`username`,`password`,`question`,`reponse`) VALUES (:nom, :prenom, :username, '$password',:question, :reponse)";
+$sql= "INSERT INTO `users`(`nom`,`prenom`,`username`,`password`,`question`,`reponse`) VALUES (:nom, :prenom, :username, '$password',:question, :reponse)";
 //*Requete preparée
 $query = $db->prepare($sql);
 
@@ -36,14 +38,14 @@ $query->bindValue(":reponse", $reponse, PDO::PARAM_STR);
 
 $query->execute();
 
+header ("Location: index.php");
 //*message d'erreur si le formulaire est incomplet (à compléter plus tard pour indiquer quel champ est incomplet)
 }else
 {
     die("Le formulaire est incomplet");}
 }
 
-$title ="Inscription";
-include "includes/header.php";
+
 ?>
 
 
@@ -73,13 +75,13 @@ include "includes/header.php";
 <label for="question">Question secrète utilisée pour réinitialiser votre mot de passe</label>
 <select name="question">
 <?php
-$requête=$db->query('SELECT question FROM questions');
+$requête=$db->query('SELECT * FROM questions');
 
 
 while ($choice = $requête->fetch())
 {
     ?>
-    <option value="<?php echo $choice ['question'];?>"><?php echo $choice ['question'];?></option>
+    <option value="<?php echo $choice ['id_question'];?>"><?php echo $choice ['question'];?></option>
 <?php
 }
 ?>
@@ -96,3 +98,4 @@ while ($choice = $requête->fetch())
 
 </form>
 </body>
+<?php include 'includes/footer.php';?>

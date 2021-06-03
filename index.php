@@ -20,14 +20,14 @@ if (!empty($_POST)){
         if(!$utilisateur){
             die("L'utilisateur ou le mot de passe n'existe pas");
         }
-        if ($_POST["password"]!== $utilisateur["password"]){
+        /*if ($_POST["password"]!== $utilisateur["password"]){
             die ("L'utilisateur ou le mot de passe est incorrect");
-        }
+        }*/
 
-        /* à utiliser lorsque le mot de passe est hasher 
+        //* à utiliser lorsque le mot de passe est hasher 
         if(!password_verify($_POST["password"],$utilisateur["password"])){
             die("L'utilisateur ou le mot de passe est incorrect");
-        }*/
+        }
        //*session_start();
        $_SESSION["utilisateur"]=[
            "id"=>$utilisateur["id_user"],
@@ -73,5 +73,8 @@ $title ="Accueil";
 
 </body>
 <?php 
+include 'includes/footer.php';
+?>
+
 
 
