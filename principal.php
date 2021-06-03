@@ -3,7 +3,7 @@
 include 'includes/header.php';
 include 'includes/navbar.php';
 include 'includes/connect_bdd.php';
-include 'includes/footer.php';
+
 
 ?>
 
@@ -82,4 +82,4 @@ include 'includes/footer.php';
 
 
 </body>
-<?php 
+<?php include 'includes/footer.php';?>

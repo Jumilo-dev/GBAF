@@ -10,10 +10,11 @@ if (!empty($_POST)){
     if (isset($_POST["username"],$_POST["password"])
     && !empty($_POST["username"]) && !empty($_POST["password"]))
     {
-        
+        $username= strip_tags($_POST["username"]);
         $sql = "SELECT * FROM `users` WHERE `username`= :username";
+        
         $query = $db->prepare($sql);
-        $query->bindValue(":username" , $_POST["username"],PDO::PARAM_STR);
+        $query->bindValue(":username" , $username,PDO::PARAM_STR);
         $query->execute();
         $utilisateur = $query->fetch();
 
