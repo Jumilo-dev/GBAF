@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +12,13 @@
     
 </head>
 <body>
-<p> Le header doit afficher le logo GBAF en haut à gauche</br>
-    En haut à droite le nom  et prénom de la personne connectée recupéree dans la base de données</br>
-    Ces noms sont un lien vers la page parametre du compte</br>
-    un lien de déconnexion doit être présent sur ses noms</br>
-    si l'utilisateur n'est pas connecté afficher "Bienvenue" à la place.</br>
-    <p>
+<p> 
+<img src="image/LOGO_GBAF_ROUGE.png" alt="Logo GBAF rouge">
+<?php if(isset($_SESSION["utilisateur"])):?>
+    <a href= "profil.php"> <?= $_SESSION["utilisateur"]["prenom"]?> <?= $_SESSION["utilisateur"]["nom"]?></a>
+    <a href="deconnexion.php">Se déconnecter</a>
+    <?php else: ?>
+    <p>Bonjour,</p>
+    <?php endif;?>
 </body>
 </html>

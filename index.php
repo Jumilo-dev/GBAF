@@ -4,6 +4,7 @@
 include 'includes/header.php';
 include 'includes/navbar.php';
 include 'includes/connect_bdd.php';
+if (!isset($_SESSION["utilisteur"])){
 
 if (!empty($_POST)){
     if (isset($_POST["username"],$_POST["password"])
@@ -27,20 +28,22 @@ if (!empty($_POST)){
         if(!password_verify($_POST["password"],$utilisateur["password"])){
             die("L'utilisateur ou le mot de passe est incorrect");
         }*/
-       session_start();
+       //*session_start();
        $_SESSION["utilisateur"]=[
            "id"=>$utilisateur["id_user"],
            "nom"=>$utilisateur["nom"],
            "prenom"=>$utilisateur["prenom"]
        ];
-       var_dump($_SESSION);
-       //*header("Location: principal.php");
+      
+       header("Location: principal.php");
     
     }else{
     die ("Le formulaire est incomplet");
     }
 }
-
+}else{
+  header ("Location: principal.php");  
+}
 $title ="Accueil";
 ?>
 

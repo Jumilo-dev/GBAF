@@ -8,7 +8,12 @@
 </head>
 <body>
     <ul>
-    <li><a href ="index.php">Accueil</a></li>
+    <?php if(isset($_SESSION["utilisateur"])):?>
+        <li><a href ="principal.php">Accueil</a></li>
+    
+    <?php else: ?>
+        <li><a href ="index.php">Accueil</a></li>
+    <?php endif;?>
     <li><a href ="inscription.php">Inscription</a></li>
     <li><a ref="Déconnexion.php">Déconnexion</a></li>
     </ul>
