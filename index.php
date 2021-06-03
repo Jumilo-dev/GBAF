@@ -19,6 +19,6 @@ include 'includes/connect_bdd.php';
 <body>
 <?php include 'login.php';?>
 </body>
-</html>
+
 
 

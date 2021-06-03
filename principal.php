@@ -43,10 +43,10 @@ include 'includes/connect_bdd.php';
 <section class="partenaire">
 
     <ul>
-        <li><h3>Partenaire 1</h3>
+        <li><h3>Protect People</h3>
             <img src>
             <p>Extrait présentation partenaire </p>
-            <button><a href="page du partenaire">En savoir plus</a></button>
+            <button><a href="partenaires/protectpeople.php">En savoir plus</a></button>
         </li>
         <li><h3>Partenaire 2</h3>
             <img src>
